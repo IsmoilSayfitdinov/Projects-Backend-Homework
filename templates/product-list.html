@@ -571,7 +571,7 @@
                                                                         </div>
                                                                         <div class="product-buttons d-flex">
                                                                             <form action="#" method="post" class="formAddToCart">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
+                                                                                <a class="add-to-cart" href="{% url 'product:products_cart' pk=product.id%}?next={{request.path}}?{{request.urlencode}}" data-button-action="add-to-cart">
                                                                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart
                                                                                 </a>
                                                                             </form>

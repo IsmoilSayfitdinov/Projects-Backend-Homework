@@ -1,6 +1,6 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import ProducstModel, ProductTagModel, ProducuctsChoisSizeModel, ColorProducstModel, ManufactureProductsModel, CategoryProductsModel, CommentsProductsModle
 # Create your views here.
@@ -67,3 +67,16 @@ class ProductsDetailView(DetailView):
         if comment:
             CommentsProductsModle.objects.create(comment= comment, user= request.user, products= self.object)
             return render(request, self.template_name, self.get_context_data())
+        
+        
+        
+def add_remove_products_cart(request, pk):
+   products_cart =  request.session.get('cart', [])
+   if pk in products_cart:
+       products_cart.remove(pk)
+   else:
+       products_cart.append(pk)
+       
+   request.session["cart"] = products_cart
+   return redirect[request.GET.get('next', 'product:products')]
+   

@@ -1,7 +1,7 @@
 from django.forms import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import  redirect, render
-from django.views.generic import FormView, CreateView
+from django.views.generic import FormView, CreateView, TemplateView
 from .forms import RegisterForm, LoginForm, EmailVerificationForm
 from django.contrib import messages
 from random import randint
@@ -103,3 +103,8 @@ class LoginView(FormView):
             
     def form_invalid(self, form):
         print(form.errors)
+        
+        
+        
+class UseraccountView(TemplateView):
+    template_name = 'user-acount.html'
