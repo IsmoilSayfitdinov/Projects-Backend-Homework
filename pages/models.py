@@ -13,3 +13,20 @@ class FormContactModel(models.Model):
     class Meta:
         verbose_name = "Form Contact"
         verbose_name_plural = "Form Contacts"
+        
+        
+        
+        
+class FedbackModelPage(models.Model):
+    fedbacks = models.TextField()
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    
+    create_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self) -> str:
+        return self.name
+    
+    class Meta:
+        verbose_name = "Fedback"
+        verbose_name_plural = "Fedbacks"

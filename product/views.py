@@ -55,7 +55,6 @@ class ProductsDetailView(DetailView):
             "tags": product.tags.all(), 
             "sizes": product.sizes.all(), 
             "color": product.color.all(), 
-            "related_products": product.get_relete_function()
         })
         return context
     

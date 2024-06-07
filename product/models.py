@@ -102,10 +102,9 @@ class ProducstModel(models.Model):
         if self.is_discount():
             return self.price - self.price * self.dicount / 100
         
-        
-    def get_relete_function(self):
-        return ProducstModel.objects.filter(category=1).exclude(pk=self.pk)
-    class Meta:
+
+
+class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
         
