@@ -1,4 +1,4 @@
-
+{%load tags%}
 {% load static %}
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
@@ -262,23 +262,24 @@
                                     <div class="cart-content">
                                         <table>
                                             <tbody>
+                                                {% for products in request|get_add_cart%}
                                                 <tr>
                                                     <td class="product-image">
-                                                        <a href="product-detail.html">
-                                                            <img src="{%static 'img/product/' %}5.jpg" alt="Product">
+                                                        <a href="{%url 'product:products_detail' pk=products.id %}">
+                                                            <img src="{{products.image.url}}" alt="Product">
                                                         </a>
                                                     </td>
                                                     <td>
                                                         <div class="product-name">
-                                                            <a href="product-detail.html">Organic Strawberry Fruits</a>
+                                                            <a href="{%url 'product:products_detail' pk=products.id %}"">Organic Strawberry Fruits</a>
                                                         </div>
                                                         <div>
                                                             2 x
-                                                            <span class="product-price">£28.98</span>
+                                                            <span class="product-price">${{products.get_math_price}}</span>
                                                         </div>
                                                     </td>
                                                     <td class="action">
-                                                        <a class="remove" href="#">
+                                                        <a class="remove" href="{% url 'product:products_cart' pk=products.id %}">
                                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                         </a>
                                                     </td>
@@ -296,6 +297,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                {%endfor%}
                                             </tbody>
                                         </table>
                                     </div>
@@ -506,8 +508,8 @@
                                                                 <div class="product-buttons d-flex justify-content-center">
                                                                     <form action="#" method="post" class="formAddToCart">
                                                                         <input type="hidden" name="id_product" value="1">
-                                                                        <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                        <a  class="add-to-cart" href="{%url 'product:products_cart' pk=product.id%}" data-button-action="add-to-cart">
+                                                                            <i  class="fa fa-shopping-cart" aria-hidden="true"></i>
                                                                         </a>
                                                                     </form>
                                                                     <a class="addToWishlist" href="#" data-rel="1" onclick="">

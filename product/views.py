@@ -77,5 +77,5 @@ def add_remove_products_cart(request, pk):
        products_cart.append(pk)
        
    request.session["cart"] = products_cart
-   return redirect[request.GET.get('next', 'product:products')]
+   return redirect('product:products')
    
